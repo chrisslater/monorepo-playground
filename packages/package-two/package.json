@@ -1,0 +1,11 @@
+{
+	"name": "package-two",
+	"version": "0.0.1",
+	"description": "package two module",
+	"main": "index.js",
+	"author": "Christopher Slater <chris@snapper.fish>",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.15.4"
+	}
+}

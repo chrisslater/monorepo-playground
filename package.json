@@ -1,0 +1,14 @@
+{
+	"devDependencies": {
+		"lerna": "^2.1.2"
+	},
+	"name": "docker-yarn-workspace-demo",
+	"version": "0.0.1",
+	"main": "index.js",
+	"author": "Christopher Slater <chris@snapper.fish>",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"private": true
+}

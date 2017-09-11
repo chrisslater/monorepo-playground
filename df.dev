@@ -1,0 +1,5 @@
+FROM deb:base
+
+ADD packages/package-one/. /code
+
+RUN yarn install

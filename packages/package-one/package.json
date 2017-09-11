@@ -1,0 +1,16 @@
+{
+	"name": "package-one",
+	"version": "0.0.1",
+	"description": "package one module",
+	"main": "index.js",
+	"author": "Christopher Slater <chris@snapper.fish>",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.15.4",
+		"koa": "^2.3.0",
+		"nodemon": "^1.12.0"
+	},
+	"scripts": {
+		"debug": "nodemon --inspect=56745 index.js"
+	}
+}
