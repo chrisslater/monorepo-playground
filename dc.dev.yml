@@ -1,11 +1,13 @@
-version: '2'
+version: '3'
 services:
-  backend:
+  package_one:
     build:
       context: .
       dockerfile: df.dev
+      args:
+        package_path: ./packages/package-one
     image: deb:dev
-    container_name: dev.backend
+    container_name: dev.package-one
     environment:
       NODE_ENV: "development"
     volumes:
@@ -13,4 +15,20 @@ services:
     ports:
       - "3100:3000"
       - "56745:56745"
+    entrypoint: ["yarn", "debug"]
+  package_two:
+    build:
+      context: .
+      dockerfile: df.dev
+      args:
+        package_path: ./packages/package-two
+    image: deb:dev
+    container_name: dev.package-two
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - "./packages/package-two:/code/app"
+    ports:
+      - "3101:3000"
+      - "56746:56745"
     entrypoint: ["yarn", "debug"]

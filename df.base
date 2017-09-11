@@ -4,7 +4,10 @@ FROM node:8.4-alpine
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
 ADD yarn.lock /tmp/yarn.lock
-ADD packages/package-one/package.json /tmp/package.json
+
+ARG package_json_path=package.json
+
+ADD $package_json_path /tmp/package.json
 RUN cd /tmp && yarn install --pure-lockfile
 
 RUN mkdir -p /code

@@ -8,4 +8,4 @@ services:
     image: deb:base
     environment:
       PORT: "3000"
-    entrypoint: ["yarn", "start"]
+    # entrypoint: ["yarn", "start"]
