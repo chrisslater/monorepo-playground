@@ -1,17 +1,35 @@
 {
     "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Node+Browser",
+            "configurations": [ "PackageOne", "PackageTwo" ]
+        }
+    ],
     "configurations": [
-
         {
             "type": "node",
             "request": "attach",
-            "name": "Attach to service",
+            "name": "PackageOne",
             "port": 5858,
             "protocol": "inspector",
             "address": "localhost",
             "restart": false,
             "sourceMaps": false,
             "localRoot": "${workspaceRoot}/packages/package-one",
+            "remoteRoot": "/code/"
+        },
+
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "PackageTwo",
+            "port": 5859,
+            "protocol": "inspector",
+            "address": "localhost",
+            "restart": false,
+            "sourceMaps": false,
+            "localRoot": "${workspaceRoot}/packages/package-two",
             "remoteRoot": "/code/"
         }
     ]

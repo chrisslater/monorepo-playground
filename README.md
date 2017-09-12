@@ -15,6 +15,10 @@
 * In docker means that you can cache the yarn install from the lock file
 * Consistant install accross envirnonments
 
+## Debugging
+
+* Debug multiple Docker boxes in visual studio code
+
 
 ## Further reading
 
