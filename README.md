@@ -14,3 +14,8 @@
 
 * In docker means that you can cache the yarn install from the lock file
 * Consistant install accross envirnonments
+
+
+## Further reading
+
+* http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html

@@ -11,6 +11,6 @@
 		"nodemon": "^1.12.0"
 	},
 	"scripts": {
-		"debug": "nodemon --inspect=56745 index.js"
+		"debug": "nodemon --inspect=0.0.0.0:5858 index.js"
 	}
 }

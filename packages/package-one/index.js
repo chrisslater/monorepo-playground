@@ -6,5 +6,5 @@ app.get('/', function (req, res) {
 })
 
 app.listen(3000, function () {
-	console.log('package one express app listening on port 3000!')
+	console.log('package-one express app listening on port 3100!')
 })

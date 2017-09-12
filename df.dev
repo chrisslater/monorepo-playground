@@ -5,13 +5,19 @@ FROM node:8.4-alpine
 # when we change our application's nodejs dependencies:
 ADD yarn.lock /tmp/yarn.lock
 
-#ARG package_json_path=package.json
+ARG package_path
+ADD $package_path/package.json /tmp/package.json
 
-ADD ${package_path}/package.json /tmp/package.json
 RUN cd /tmp && yarn install --pure-lockfile
 
-RUN mkdir -p /code
+#RUN mkdir -p /code
+
+ADD $package_path /code
 WORKDIR /code
+
+RUN mkdir -p node_modules
+RUN cp -R /tmp/node_modules /code
+RUN cp /tmp/yarn.lock /code/yarn.lock
 
 #FROM deb:base
 
