@@ -17,19 +17,20 @@ services:
       - "3100:3000"
       - "5858:5858"
     entrypoint: ["yarn", "debug"]
-  # package_two:
-  #   build:
-  #     context: .
-  #     dockerfile: df.dev
-  #     args:
-  #       package_path: ./packages/package-two
-  #   image: deb:dev
-  #   container_name: dev.package-two
-  #   environment:
-  #     NODE_ENV: "development"
-  #   volumes:
-  #     - "./packages/package-two:/code"
-  #   ports:
-  #     - "3101:3000"
-  #     - "5859:5858"
-  #   entrypoint: ["yarn", "debug"]
+  package_two:
+    build:
+      context: .
+      dockerfile: df.dev
+      args:
+        package_path: ./packages/package-two
+    image: deb:dev
+    container_name: dev.package-two
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - "./packages/package-two:/code"
+      - "/code/node_modules"
+    ports:
+      - "3101:3000"
+      - "5859:5858"
+    entrypoint: ["yarn", "debug"]

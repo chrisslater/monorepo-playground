@@ -6,7 +6,8 @@
 	"author": "Christopher Slater <chris@snapper.fish>",
 	"license": "MIT",
 	"dependencies": {
-		"express": "^4.15.4"
+		"express": "^4.15.4",
+		"nodemon": "^1.12.0"
 	},
 	"scripts": {
 		"debug": "nodemon --inspect=0.0.0.0:5858 index.js"
