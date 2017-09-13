@@ -1,2 +1,2 @@
 #!/bin/sh
-docker-compose up -f dc.dev.yml --build "$@"
+docker-compose -f dc.dev.yml up --build "$@"

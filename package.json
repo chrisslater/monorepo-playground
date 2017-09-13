@@ -12,6 +12,7 @@
 	],
 	"private": true,
 	"scripts": {
-		"debug": "./scripts/debug.sh"
+		"debug": "./scripts/debug.sh",
+		"start:dev": "./scripts/start-dev.sh"
 	}
 }
