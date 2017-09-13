@@ -1,6 +1,8 @@
 {
 	"devDependencies": {
-		"lerna": "^2.1.2"
+		"jest": "^21.0.2",
+		"lerna": "^2.1.2",
+		"typescript": "^2.5.2"
 	},
 	"name": "docker-yarn-workspace-demo",
 	"version": "0.0.1",
@@ -13,6 +15,7 @@
 	"private": true,
 	"scripts": {
 		"debug": "./scripts/debug.sh",
-		"start:dev": "./scripts/start-dev.sh"
+		"start:dev": "./scripts/start-dev.sh",
+		"test": "jest"
 	}
 }
