@@ -1,7 +1,6 @@
 {
 	"devDependencies": {
-		"lerna": "^2.1.2",
-		"express": "^4.15.4"
+		"lerna": "^2.1.2"
 	},
 	"name": "docker-yarn-workspace-demo",
 	"version": "0.0.1",
@@ -13,6 +12,6 @@
 	],
 	"private": true,
 	"scripts": {
-		"debug": "./debug.sh"
+		"debug": "./scripts/debug.sh"
 	}
 }

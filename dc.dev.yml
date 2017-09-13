@@ -3,7 +3,7 @@ services:
   package_one:
     build:
       context: .
-      dockerfile: df.dev
+      dockerfile: ./images/df.dev
     image: deb:dev
     container_name: dev.package-one
     environment:
@@ -18,7 +18,7 @@ services:
   package_two:
     build:
       context: .
-      dockerfile: df.dev
+      dockerfile: ./images/df.dev
     image: deb:dev
     container_name: dev.package-two
     environment:
