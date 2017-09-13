@@ -17,7 +17,7 @@
             "restart": false,
             "sourceMaps": false,
             "localRoot": "${workspaceRoot}/packages/package-one",
-            "remoteRoot": "/code/"
+            "remoteRoot": "/code/packages/package-one"
         },
 
         {
@@ -30,7 +30,7 @@
             "restart": false,
             "sourceMaps": false,
             "localRoot": "${workspaceRoot}/packages/package-two",
-            "remoteRoot": "/code/"
+            "remoteRoot": "/code/packages/package-two"
         }
     ]
 }

@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 
 app.get('/', function (req, res) {
-	res.send(`Hello World! ${add(1 + 4)}`)
+	const calc = add(1, 4)
+	res.send(`Hello World! ${calc}`)
 })
 
 app.listen(3000, function () {

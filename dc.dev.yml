@@ -1,36 +1,31 @@
 version: '3'
 services:
-  # package_one:
-  #   build:
-  #     context: .
-  #     dockerfile: df.dev
-  #     args:
-  #       package_path: ./packages/package-one
-  #   image: deb:dev
-  #   container_name: dev.package-one
-  #   environment:
-  #     NODE_ENV: "development"
-  #   volumes:
-  #     - "./packages/package-one:/code"
-  #     - "/code/node_modules"
-  #   ports:
-  #     - "3100:3000"
-  #     - "5858:5858"
-  #   entrypoint: ["yarn", "debug"]
+  package_one:
+    build:
+      context: .
+      dockerfile: df.dev
+    image: deb:dev
+    container_name: dev.package-one
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/package-one"
+    volumes:
+      - ./packages:/code/packages
+    ports:
+      - "3100:3000"
+      - "5858:5858"
+    entrypoint: ["yarn", "debug"]
   package_two:
     build:
       context: .
       dockerfile: df.dev
-      args:
-        package_path: ./packages/package-two
     image: deb:dev
     container_name: dev.package-two
     environment:
       NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/package-two"
     volumes:
-      - "./packages/package-two:/code"
-      # - "/code/node_modules"
-      - "./packages:/tmp/packages"
+      - ./packages:/code/packages
 
     ports:
       - "3101:3000"

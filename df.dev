@@ -1,40 +1,13 @@
-FROM node:8.4-alpine
+FROM node:8.5-alpine
 
 # Copied from: http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
-ADD yarn.lock /tmp/yarn.lock
+##ADD yarn.lock /tmp/yarn.lock
+##ADD package.json /tmp/package.json
+##RUN cd /tmp && yarn install --pure-lockfile
 
-ARG package_path
-ADD $package_path/package.json /tmp/package.json
-
-ADD packages /tmp/packages
-
-#RUN mkdir -p /tmp/node_modules
-#RUN ln -s /tmp/packages/package-three /tmp/node_modules/package-three
-
-RUN cd /tmp && yarn add link:/tmp/packages/package-three
-
-RUN cat /tmp/package.json
-
-RUN cd /tmp && yarn install --pure-lockfile
-
-#RUN mkdir -p /code
-
-#VOLUME /code
-ADD $package_path /code
+# Copy workspace and install node_modules
+ADD . /code
 WORKDIR /code
-RUN chmod +x build.sh
-
-# RUN rm -rf node_modules
-## RUN ln -s /tmp/node_modules /code/node_modules
-
-#RUN mkdir -p node_modules
-#RUN cp -R -a /tmp/node_modules /code
-# RUN cp /tmp/yarn.lock /code/yarn.lock
-
-#FROM deb:base
-
-#ADD packages/package-one/. /code
-
-#RUN yarn install
+RUN yarn install --pure-lockfile
