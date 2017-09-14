@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"dependencies": {
 		"express": "^4.15.4",
-		"nodemon": "^1.12.0"
+		"nodemon": "^1.12.0",
+		"package-three": "^0.0.1"
 	},
 	"scripts": {
 		"debug": "nodemon --inspect=0.0.0.0:5858 --watch . --watch ../packages/** index.js"
