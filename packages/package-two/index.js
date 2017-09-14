@@ -4,7 +4,7 @@ const app = express()
 
 app.get('/', function (req, res) {
 	const calc = add(1, 4)
-	res.send(`Hello World! ${calc}`)
+	res.json({ calc })
 })
 
 app.listen(3000, function () {
