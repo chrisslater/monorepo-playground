@@ -4,17 +4,17 @@ services:
     build:
       context: .
       dockerfile: ./images/Dockerfile.nginx
+      args:
+        package_path: "./packages/gateway"
     image: gateway
     container_name: dev.gateway
-    args:
-      package_path: ./packages/gateway
     ports:
       - "3000:80"
     entrypoint: ["nginx", "-g", "daemon off;"]
   package_one:
     build:
       context: .
-      dockerfile: ./images/df.dev
+      dockerfile: ./images/Dockerfile.node.dev
     image: deb:dev
     container_name: dev.package-one
     environment:
@@ -29,7 +29,7 @@ services:
   package_two:
     build:
       context: .
-      dockerfile: ./images/df.dev
+      dockerfile: ./images/Dockerfile.node.dev
     image: deb:dev
     container_name: dev.package-two
     environment:
