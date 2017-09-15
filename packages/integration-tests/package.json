@@ -1,0 +1,11 @@
+{
+	"name": "integration-tests",
+	"version": "0.0.1",
+	"description": "Integration test example",
+	"main": "index.js",
+	"author": "Christopher Slater <chris@snapper.fish>",
+	"license": "MIT",
+	"dependencies": {
+		"cucumber": "^3.0.2"
+	}
+}

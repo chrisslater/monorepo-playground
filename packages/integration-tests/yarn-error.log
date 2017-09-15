@@ -1,0 +1,46 @@
+Arguments: 
+  /Users/chris.slater/.nvm/versions/node/v6.9.5/bin/node /usr/local/Cellar/yarn/1.0.1/libexec/bin/yarn.js add testcafe
+
+PATH: 
+  /Users/chris.slater/.rbenv/shims:/Users/chris.slater/.rbenv/bin:/Users/chris.slater/.nvm/versions/node/v6.9.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/chris.slater/.rbenv/shims:/Users/chris.slater/.rbenv/bin:/Users/chris.slater/.rvm/bin:/Users/chris.slater/.rvm/bin
+
+Yarn version: 
+  1.0.1
+
+Node version: 
+  6.9.5
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+  	"name": "integration-tests",
+  	"version": "0.0.1",
+  	"description": "Integration test example",
+  	"main": "index.js",
+  	"author": "Christopher Slater <chris@snapper.fish>",
+  	"license": "MIT",
+  	"dependencies": {
+  		"cucumber": "^3.0.2"
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: http://npm.cloud.platforms.gamesys.corp:4873/@types%2fchalk: user johannes-stein not allowed to access it
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.0.1/libexec/lib/cli.js:60278:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.0.1/libexec/lib/cli.js:117324:22)
+      at emitTwo (events.js:106:13)
+      at Request.emit (events.js:191:7)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.0.1/libexec/lib/cli.js:118307:10)
+      at emitOne (events.js:96:13)
+      at Request.emit (events.js:188:7)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.0.1/libexec/lib/cli.js:118227:12)
+      at IncomingMessage.g (events.js:291:16)
+      at emitNone (events.js:91:20)
