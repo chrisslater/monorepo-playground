@@ -3,10 +3,11 @@
     "compounds": [
         {
             "name": "Node+Browser",
-            "configurations": [ "PackageOne", "PackageTwo" ]
+            "configurations": [ "Graphql", "PackageOne", "PackageTwo" ]
         }
     ],
     "configurations": [
+        
         {
             "type": "node",
             "request": "attach",
@@ -31,6 +32,19 @@
             "sourceMaps": false,
             "localRoot": "${workspaceRoot}/packages/package-two",
             "remoteRoot": "/code/packages/package-two"
+        },
+
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Graphql",
+            "port": 5860,
+            "protocol": "inspector",
+            "address": "localhost",
+            "restart": false,
+            "sourceMaps": false,
+            "localRoot": "${workspaceRoot}/packages/graphql",
+            "remoteRoot": "/code/packages/graphql"
         }
     ]
 }

@@ -1,0 +1,1 @@
+concurrently "tsc -w --project $PACKAGE_PATH" "nodemon --inspect=0.0.0.0:5858 --watch packages $PACKAGE_PATH/out/index.js"

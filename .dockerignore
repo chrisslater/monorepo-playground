@@ -1,6 +1,8 @@
 node_modules
-images
+/images
+out
 .vscode
+lerna-debug.log
 yarn-error.log
 .editorconfig
 .gitignore

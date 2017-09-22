@@ -11,34 +11,72 @@ services:
     ports:
       - "3000:80"
     entrypoint: ["nginx", "-g", "daemon off;"]
-  package_one:
+
+  # package_one:
+  #   build:
+  #     context: .
+  #     dockerfile: ./images/Dockerfile.node.dev
+  #   image: deb:dev
+  #   container_name: dev.package-one
+  #   environment:
+  #     NODE_ENV: "development"
+  #     PACKAGE_PATH: "/code/packages/package-one"
+  #     ENTRY_FILE: "/code/packages/package-one/index.js"
+  #   volumes:
+  #     - ./packages:/code/packages
+  #   ports:
+  #     - "3100:3000"
+  #     - "5858:5858"
+  #   entrypoint: ["yarn", "debug"]
+
+  # package_two:
+  #   build:
+  #     context: .
+  #     dockerfile: ./images/Dockerfile.node.dev
+  #   image: deb:dev
+  #   container_name: dev.package-two
+  #   environment:
+  #     NODE_ENV: "development"
+  #     ENTRY_FILE: "/code/packages/package-two/index.js"
+  #   volumes:
+  #     - ./packages:/code/packages
+
+  #   ports:
+  #     - "3101:3000"
+  #     - "5859:5858"
+  #   entrypoint: ["yarn", "debug"]
+
+  graphql:
     build:
       context: .
       dockerfile: ./images/Dockerfile.node.dev
     image: deb:dev
-    container_name: dev.package-one
+    container_name: dev.graphql
     environment:
       NODE_ENV: "development"
-      PACKAGE_PATH: "/code/packages/package-one"
-    volumes:
-      - ./packages:/code/packages
-    ports:
-      - "3100:3000"
-      - "5858:5858"
-    entrypoint: ["yarn", "debug"]
-  package_two:
-    build:
-      context: .
-      dockerfile: ./images/Dockerfile.node.dev
-    image: deb:dev
-    container_name: dev.package-two
-    environment:
-      NODE_ENV: "development"
-      PACKAGE_PATH: "/code/packages/package-two"
+      PACKAGE_PATH: "/code/packages/graphql"
+      ENTRY_FILE: "/code/packages/graphql/src/index.ts"
     volumes:
       - ./packages:/code/packages
 
     ports:
-      - "3101:3000"
-      - "5859:5858"
-    entrypoint: ["yarn", "debug"]
+      - "3102:3000"
+      - "5860:5858"
+    entrypoint: ["yarn", "debug:ts"]
+
+  client:
+    build:
+      context: .
+      dockerfile: ./images/Dockerfile.node.dev
+    image: deb:dev
+    container_name: dev.client
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/client"
+    volumes:
+      - ./packages:/code/packages
+
+    ports:
+      - "3103:3000"
+      - "5861:5858"
+    entrypoint: ['yarn', 'debug:client']

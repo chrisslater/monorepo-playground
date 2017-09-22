@@ -1,0 +1,18 @@
+{
+	"users": [{
+			"id": "1",
+			"name": "Chris",
+			"nationality": "British"
+		},
+		{
+			"id": "2",
+			"name": "Johannes",
+			"nationality": "German"
+		},
+		{
+			"id": "3",
+			"name": "Ian",
+			"nationality": "British"
+		}
+	]
+}
