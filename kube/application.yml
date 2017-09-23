@@ -1,0 +1,102 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: application
+    annotations:
+      ingress.kubernetes.io/rewrite-target: /
+    labels:
+      run: application
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: application.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: client
+          servicePort: 8080
+      - path: /graphql
+        backend:
+          serviceName: graphql
+          servicePort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  labels:
+    run: application
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 3000
+    nodePort: 31000
+    protocol: TCP
+    name: http
+  selector:
+    run: application
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphql
+  labels:
+    run: application
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 3000
+    nodePort: 31001
+    protocol: TCP
+    name: http
+  selector:
+    run: application
+---
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: application-client
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: application
+    spec:
+      containers:
+      - name: client
+        image: graphql:next
+        env:
+        - name: PACKAGE_PATH
+          value: /code/packages/client
+        command: ["yarn", "debug:client"]
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: application-graphql
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: application
+    spec:
+      containers:
+      - name: graphql
+        image: graphql:next
+        env:
+        - name: PACKAGE_PATH
+          value: /code/packages/graphql
+        command: ["yarn", "debug:ts"]
+        ports:
+        - containerPort: 3000

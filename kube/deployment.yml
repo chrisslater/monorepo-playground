@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: graphql-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: application
+    spec:
+      containers:
+      - name: graphql
+        image: graphql:next
+        env:
+        - name: PACKAGE_PATH
+          value: /code/packages/graphql
+        command: ["yarn", "debug:ts"]
+        ports:
+        - containerPort: 3000

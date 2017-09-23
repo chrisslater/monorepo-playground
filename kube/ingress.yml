@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: application
+    annotations:
+      ingress.kubernetes.io/rewrite-target: /
+    labels:
+      run: application
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: application.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: client
+          servicePort: 8080
+      - path: /graphql
+        backend:
+          serviceName: graphql
+          servicePort: 8080

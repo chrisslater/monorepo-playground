@@ -12,7 +12,7 @@
 		"react": "^15.6.1",
 		"react-apollo": "^1.4.14",
 		"react-dom": "^15.6.1",
-		"react-scripts-ts": "2.6.0"
+		"react-scripts-ts": "2.7.0"
 	},
 	"scripts": {
 		"start": "react-scripts-ts start",

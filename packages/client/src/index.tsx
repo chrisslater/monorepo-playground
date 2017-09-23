@@ -12,7 +12,7 @@ import {
 
 const client = new ApolloClient({
 	networkInterface: createNetworkInterface({
-		uri: 'http://localhost:3000/graphql',
+		uri: '/graphql',
 		opts: {
 			method: 'POST',
 		},

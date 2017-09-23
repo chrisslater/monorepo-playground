@@ -19,6 +19,11 @@
 
 * Debug multiple Docker boxes in visual studio code
 
+## Kubernetes
+
+* https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
+* Ingress controller: https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/
+
 
 ## Further reading
 
