@@ -2,11 +2,9 @@
 	"version": "0.2.0",
 	"compounds": [{
 		"name": "Node+Browser",
-		"configurations": ["Graphql"]
+		"configurations": ["Client", "Graphql"]
 	}],
-	"configurations": [
-
-		{
+	"configurations": [{
 			"type": "node",
 			"request": "attach",
 			"name": "PackageOne",
@@ -33,14 +31,13 @@
 		},
 
 		{
-			"name": "Chrome",
+			"name": "Client",
 			"type": "chrome",
 			"request": "launch",
 			"url": "http://localhost:3000",
-			"webRoot": "${workspaceRoot}/packages/client/src",
 			"userDataDir": "${workspaceRoot}/.vscode/chrome",
 			"sourceMapPathOverrides": {
-				"webpack://./src/*": "${webRoot}/*"
+				"/code/packages/client/src/*": "${workspaceRoot}/packages/client/src/*"
 			}
 		},
 
