@@ -1,0 +1,17 @@
+{
+	"name": "rest-api",
+	"version": "0.0.1",
+	"devDependencies": {
+		"tslint": "^5.6.0",
+		"typescript": "^2.4.2"
+	},
+	"scripts": {
+		"watch": "tsc -w --declaration",
+		"build": "tsc --declaration",
+		"lint": "tslint --init"
+	},
+	"dependencies": {
+		"@types/axios": "^0.14.0",
+		"axios": "^0.16.2"
+	}
+}

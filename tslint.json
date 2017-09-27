@@ -1,0 +1,26 @@
+{
+	"defaultSeverity": "error",
+	"extends": [
+		"tslint:recommended"
+	],
+	"jsRules": {},
+	"rules": {
+		"no-any": true,
+		"indent": [true, "tabs", 4],
+		"member-ordering": [true, {
+			"order": [
+				"static-field",
+				"instance-field",
+				"constructor",
+				"public-instance-method",
+				"protected-instance-method",
+				"private-instance-method"
+			]
+		}],
+		"no-empty-interface": false,
+		"object-literal-sort-keys": false,
+		"quotemark": [true, "single", "jsx-double"],
+		"semicolon": [true, "never"]
+	},
+	"rulesDirectory": []
+}
