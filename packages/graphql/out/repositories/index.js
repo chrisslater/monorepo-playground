@@ -35,4 +35,5 @@ var UsersRepository = (function () {
     return UsersRepository;
 }());
 exports.UsersRepository = UsersRepository;
+exports.default = ;
 //# sourceMappingURL=index.js.map

@@ -6,6 +6,8 @@ import * as Koa from 'koa'
 import bodyParser = require('koa-bodyparser')
 import * as Router from 'koa-router'
 
+import server = require('server')()
+
 import {
 	IApplication,
 	IRootQuerySchema,

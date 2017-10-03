@@ -1,15 +1,23 @@
 import * as Graphql from 'graphql'
-import { inject, injectable } from 'inversify'
-import {
-	IUser,
-	IUsersMutationFields,
-	IUsersRepository,
-	IUsersSchema,
-	IUsersSchemaFields,
-	Types,
-} from '../types'
+import { usersRepository } from '../repositories'
 
-const UserType = new Graphql.GraphQLObjectType({
+const usersRepo = usersRepository()
+
+export interface IUsersSchemaFields {
+	users: Graphql.GraphQLFieldConfig<any, any>
+	userByName: Graphql.GraphQLFieldConfig<any, any>
+}
+
+export interface IUser {
+	name: string,
+	nationality: string
+}
+
+// export interface IUsersMutationFields {
+// 	createUser: Graphql.GraphQLFieldConfig<any, any>
+// }
+
+export const UserType = new Graphql.GraphQLObjectType({
 	name: 'User',
 	fields: {
 		id: {
@@ -24,7 +32,7 @@ const UserType = new Graphql.GraphQLObjectType({
 	},
 })
 
-const UserInputType =  new Graphql.GraphQLObjectType({
+export const UserInputType = new Graphql.GraphQLObjectType({
 	name: 'UserInput',
 	fields: {
 		id: {
@@ -40,56 +48,30 @@ const UserInputType =  new Graphql.GraphQLObjectType({
 	},
 })
 
-@injectable()
-export class UsersSchema implements IUsersSchema {
-	protected usersRepository: IUsersRepository
-
-	constructor(
-		@inject(Types.UsersRepository) usersRepository: IUsersRepository,
-	) {
-		this.usersRepository = usersRepository
-	}
-
-	// @todo Add UserType and UserInputType
-	// get mutations(): IUsersMutationFields {
-	// 	const createUser = {
-	// 		type: UserType,
-	// 		description: 'Create a new User',
-	// 		args: {
-	// 			user: { type: UserInputType }
-	// 		},
-	// 		resolve: (value, { user }) => {
-	// 			return ArticleServices.createArticle(user);
-	// 		}
-	// 	}
-
-	// 	return { createUser }
-	// }
-
-	get schema(): IUsersSchemaFields {
-		const userByName = {
-			name: 'User',
-			description: 'User',
-			args: {
-				name: {
-					name: 'name',
-					type: Graphql.GraphQLString,
-				},
-			},
-			type: UserType,
-			resolve: (root: any, args: { name: string }): IUser =>
-				this.usersRepository.getUserByName(args.name),
-		}
-
-		const users = {
-			description: 'Users',
-			type: new Graphql.GraphQLList(UserType),
-			resolve: (): IUser[] => {
-				const result = this.usersRepository.getUsers()
-				return result
-			},
-		}
-
-		return { users, userByName }
-	}
+const userByName = {
+	name: 'User',
+	description: 'User',
+	args: {
+		name: {
+			name: 'name',
+			type: Graphql.GraphQLString,
+		},
+	},
+	type: UserType,
+	resolve: async (root: any, args: { name: string }): Promise<IUser> =>
+		await usersRepo.getUserByName(args.name),
 }
+
+const users = {
+	description: 'Users',
+	type: new Graphql.GraphQLList(UserType),
+	resolve: async (): Promise<IUser[]> =>
+		await usersRepo.getUsers(),
+}
+
+const userFields: IUsersSchemaFields = {
+	users,
+	userByName,
+}
+
+export default userFields

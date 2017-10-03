@@ -35,9 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var axios_1 = require("axios");
 var RestClient = (function () {
-    function RestClient(client) {
+    function RestClient(_a) {
+        var _b = _a.client, client = _b === void 0 ? axios_1.default : _b, _c = _a.prefix, prefix = _c === void 0 ? '' : _c;
         this.client = client;
+        this.prefix = prefix;
     }
     RestClient.prototype.get = function (url) {
         return __awaiter(this, void 0, void 0, function () {
@@ -52,5 +55,6 @@ var RestClient = (function () {
     return RestClient;
 }());
 exports.RestClient = RestClient;
-exports.default = RestClient;
+var restClientFactory = function (options) { return new RestClient(options); };
+exports.default = restClientFactory;
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,12 @@
-import 'reflect-metadata'
-import { container } from './container'
-import { IApplication, Types } from './types'
+import * as Graphql from 'graphql'
+import server, { IContext } from 'server'
 
-const application = container.get<IApplication>(Types.Application)
+import schema from './schema'
 
-application.run()
+const app = server()
+
+app.post('', async (ctx: IContext) => {
+	const query = ctx.request && ctx.request.body && ctx.request.body.query
+
+	ctx.body = await Graphql.graphql(schema, query)
+})

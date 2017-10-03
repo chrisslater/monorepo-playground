@@ -52,6 +52,7 @@ var inversify_1 = require("inversify");
 var Koa = require("koa");
 var bodyParser = require("koa-bodyparser");
 var Router = require("koa-router");
+();
 var types_1 = require("./types");
 var Application = (function () {
     function Application(rootQuerySchema) {

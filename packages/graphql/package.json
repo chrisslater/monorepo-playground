@@ -8,21 +8,13 @@
 		"@types/koa-router": "^7.0.22",
 		"@types/lowdb": "^0.15.0",
 		"@types/node": "^8.0.24",
-		"concurrently": "^3.5.0",
-		"graphql": "^0.11.3",
-		"inversify": "^4.3.0",
-		"koa": "^2.3.0",
-		"koa-bodyparser": "^4.2.0",
-		"koa-router": "^7.2.1",
-		"lowdb": "^0.16.2",
-		"nodemon": "^1.11.0",
-		"path": "^0.12.7",
-		"reflect-metadata": "^0.1.10",
+		"graphql": "^0.11.3"
+	},
+	"devDependencies": {
 		"tslint": "^5.6.0",
 		"typescript": "^2.4.2"
 	},
 	"scripts": {
-		"start": "concurrently \"tsc -w\" \"nodemon --inspect=5858 out/index.js\"",
 		"build": "tsc",
 		"lint": "tslint --init"
 	}

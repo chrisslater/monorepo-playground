@@ -1,21 +1,8 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Graphql = require("graphql");
-var inversify_1 = require("inversify");
-var types_1 = require("../types");
-var UserType = new Graphql.GraphQLObjectType({
+exports.UserType = new Graphql.GraphQLObjectType({
     name: 'User',
     fields: {
         id: {
@@ -29,7 +16,7 @@ var UserType = new Graphql.GraphQLObjectType({
         },
     },
 });
-var UserInputType = new Graphql.GraphQLObjectType({
+exports.UserInputType = new Graphql.GraphQLObjectType({
     name: 'UserInput',
     fields: {
         id: {
@@ -43,46 +30,30 @@ var UserInputType = new Graphql.GraphQLObjectType({
         },
     },
 });
-var UsersSchema = (function () {
-    function UsersSchema(usersRepository) {
-        this.usersRepository = usersRepository;
-    }
-    Object.defineProperty(UsersSchema.prototype, "schema", {
-        get: function () {
-            var _this = this;
-            var userByName = {
-                name: 'User',
-                description: 'User',
-                args: {
-                    name: {
-                        name: 'name',
-                        type: Graphql.GraphQLString,
-                    },
-                },
-                type: UserType,
-                resolve: function (root, args) {
-                    return _this.usersRepository.getUserByName(args.name);
-                },
-            };
-            var users = {
-                description: 'Users',
-                type: new Graphql.GraphQLList(UserType),
-                resolve: function () {
-                    var result = _this.usersRepository.getUsers();
-                    return result;
-                },
-            };
-            return { users: users, userByName: userByName };
+var userByName = {
+    name: 'User',
+    description: 'User',
+    args: {
+        name: {
+            name: 'name',
+            type: Graphql.GraphQLString,
         },
-        enumerable: true,
-        configurable: true
-    });
-    UsersSchema = __decorate([
-        inversify_1.injectable(),
-        __param(0, inversify_1.inject(types_1.Types.UsersRepository)),
-        __metadata("design:paramtypes", [Object])
-    ], UsersSchema);
-    return UsersSchema;
-}());
-exports.UsersSchema = UsersSchema;
+    },
+    type: exports.UserType,
+    resolve: function (root, args) {
+        return _this.usersRepository.getUserByName(args.name);
+    },
+};
+var users = {
+    description: 'Users',
+    type: new Graphql.GraphQLList(exports.UserType),
+    resolve: function () {
+        return _this.usersRepository.getUsers();
+    },
+};
+var userFields = {
+    users: users,
+    userByName: userByName,
+};
+exports.default = userFields;
 //# sourceMappingURL=users.js.map
