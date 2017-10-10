@@ -28,7 +28,7 @@ const User: React.SFC<IUser> = ({ name, nationality }) => (
 type WrappedProps = IUsers & QueryProps
 
 const Users: React.SFC<IQuery<WrappedProps>> = ({ data: { users } }) => (
-	<div>
+	<div data-test="users">
 		{users && users.map((user: IUserQuery) => (<User key={user.id} name={user.name} nationality={user.nationality} />))}
 	</div>
 )

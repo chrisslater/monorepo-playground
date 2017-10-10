@@ -49,15 +49,6 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: http://npm.cloud.platforms.gamesys.corp:4873/@types%2fjest: can't access restricted package without auth, did you forget 'npm set always-auth true'?
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:61779:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:121917:22)
-      at emitTwo (events.js:106:13)
-      at Request.emit (events.js:191:7)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122900:10)
-      at emitOne (events.js:96:13)
-      at Request.emit (events.js:188:7)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122820:12)
-      at IncomingMessage.g (events.js:291:16)
-      at emitNone (events.js:91:20)
-      at IncomingMessage.emit (events.js:185:7)
+  Error: getaddrinfo ENOTFOUND registry.npmrc.org registry.npmrc.org:80
+      at errnoException (dns.js:28:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:76:26)
