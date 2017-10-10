@@ -6,7 +6,6 @@
 		"@types/koa": "^2.0.39",
 		"@types/koa-bodyparser": "^3.0.23",
 		"@types/koa-router": "^7.0.22",
-		"@types/lowdb": "^0.15.0",
 		"@types/node": "^8.0.24",
 		"graphql": "^0.11.3"
 	},

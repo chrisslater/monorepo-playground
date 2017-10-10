@@ -1,22 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Lowdb = require("lowdb");
+var Low = require("lowdb");
 var path = require("path");
-var filePath = path.resolve(__dirname, '../db.json');
-var DbContext = (function () {
-    function DbContext() {
-        this.context = new Lowdb(filePath);
+var FileSync = require("lowdb/adapters/FileSync");
+var Db = (function () {
+    function Db(context) {
+        this.context = context;
     }
-    Object.defineProperty(DbContext.prototype, "users", {
-        get: function () {
-            return this.context.get('users');
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return DbContext;
+    Db.prototype.getUsers = function () {
+        return this.context.get('users').value();
+    };
+    return Db;
 }());
-exports.DbContext = DbContext;
-var dbFactory = function () { return new DbContext(); };
+exports.Db = Db;
+var filePath = path.resolve(__dirname, '../db.json');
+var adapter = new FileSync(filePath);
+var dbFactory = function (context) {
+    if (context === void 0) { context = new Low(adapter); }
+    return new Db(context);
+};
 exports.default = dbFactory;
 //# sourceMappingURL=db.js.map

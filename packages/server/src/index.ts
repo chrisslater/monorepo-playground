@@ -2,7 +2,7 @@ import * as Koa from 'koa'
 import bodyParser = require('koa-bodyparser')
 import * as Router from 'koa-router'
 
-export type IMethod = 'get' | 'post' | 'put' | 'del'
+export type IMethod = 'get' | 'post'
 
 export interface IContext extends Koa.Context { }
 
@@ -14,13 +14,18 @@ export interface IRoute {
 	handler: IHandler
 }
 
+export type ICallback = () => void
+
 export interface IServer {
 	routes(routes: IRoute[]): void
 	route(route: IRoute): void
 	get(path: string, handler: IHandler): void
 	post(path: string, handler: IHandler): void
-	listen(port: number): void
+	listen(port?: number, callback?: ICallback): void
 }
+
+// tslint:disable-next-line:no-empty
+function noop() { }
 
 export class Server implements IServer {
 	protected server: Koa
@@ -48,12 +53,12 @@ export class Server implements IServer {
 		this.router.post(path, handler)
 	}
 
-	public listen(port: number = 3000): void {
+	public listen(port: number = 3000, callback: ICallback = noop): void {
 		this.server.use(bodyParser())
 		this.server.use(this.router.routes())
 		this.server.use(this.router.allowedMethods())
 
-		this.server.listen(port)
+		this.server.listen(port, callback)
 	}
 }
 

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Koa = require("koa");
 var bodyParser = require("koa-bodyparser");
 var Router = require("koa-router");
+function noop() { }
 var Server = (function () {
     function Server() {
         this.server = new Koa();
@@ -24,12 +25,13 @@ var Server = (function () {
     Server.prototype.post = function (path, handler) {
         this.router.post(path, handler);
     };
-    Server.prototype.listen = function (port) {
+    Server.prototype.listen = function (port, callback) {
         if (port === void 0) { port = 3000; }
+        if (callback === void 0) { callback = noop; }
         this.server.use(bodyParser());
         this.server.use(this.router.routes());
         this.server.use(this.router.allowedMethods());
-        this.server.listen(port);
+        this.server.listen(port, callback);
     };
     return Server;
 }());

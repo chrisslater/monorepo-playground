@@ -1,11 +1,20 @@
-import Lowdb = require('lowdb');
+import Low = require('lowdb');
+export interface IUser {
+    id: string;
+    name: string;
+    nationality: string;
+}
 export interface IDbContext {
-    users: Lowdb.Lowdb;
+    get<TResult>(str: string): this;
+    value<TResult>(): TResult;
 }
-export declare class DbContext implements IDbContext {
-    protected context: Lowdb.Lowdb;
-    constructor();
-    readonly users: Lowdb;
+export interface IDb {
+    getUsers(): IUser[];
 }
-declare const dbFactory: () => DbContext;
+export declare class Db implements IDb {
+    protected context: IDbContext;
+    constructor(context: IDbContext);
+    getUsers(): IUser[];
+}
+declare const dbFactory: (context?: Low) => Db;
 export default dbFactory;

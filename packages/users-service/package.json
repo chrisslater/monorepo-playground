@@ -1,26 +1,20 @@
 {
 	"name": "users-service",
 	"version": "0.0.1",
+	"types": "out/main.d.ts",
 	"devDependencies": {
+		"@types/node": "^8.0.24",
 		"tslint": "^5.6.0",
 		"typescript": "^2.4.2"
 	},
 	"scripts": {
+		"start": "node out/index.js",
 		"watch": "tsc -w --declaration",
 		"build": "tsc --declaration",
 		"lint": "tslint --init"
 	},
 	"dependencies": {
-		"@types/node": "^8.0.24",
-		"@types/koa": "^2.0.39",
-		"@types/koa-bodyparser": "^3.0.23",
-		"@types/koa-router": "^7.0.22",
-		"@types/lowdb": "^0.15.0",
-		"koa": "^2.3.0",
-		"koa-bodyparser": "^4.2.0",
-		"koa-router": "^7.2.1",
-		"lowdb": "^0.16.2",
-		"inversify": "^4.3.0",
-		"reflect-metadata": "^0.1.10"
+		"lowdb": "^1.0.0",
+		"server": "^0.0.1"
 	}
 }

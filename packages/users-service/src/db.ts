@@ -1,24 +1,38 @@
-import Lowdb = require('lowdb')
+import Low = require('lowdb')
 import path = require('path')
 
-const filePath = path.resolve(__dirname, '../db.json')
+import FileSync = require('lowdb/adapters/FileSync')
+
+export interface IUser {
+	id: string
+	name: string
+	nationality: string
+}
 
 export interface IDbContext {
-	users: Lowdb.Lowdb
+	get<TResult>(str: string): this
+	value<TResult>(): TResult
 }
 
-export class DbContext implements IDbContext {
-	protected context: Lowdb.Lowdb
+export interface IDb {
+	getUsers(): IUser[]
+}
 
-	constructor() {
-		this.context = new Lowdb(filePath)
-	}
+export class Db implements IDb {
+	constructor(
+		protected context: IDbContext,
+	) { }
 
-	get users() {
-		return this.context.get('users')
+	public getUsers(): IUser[] {
+		return this.context.get<IUser>('users').value()
 	}
 }
 
-const dbFactory = () => new DbContext()
+const filePath = path.resolve(__dirname, '../db.json')
+const adapter = new FileSync(filePath)
+
+const dbFactory = (
+	context = new Low(adapter),
+) => new Db(context)
 
 export default dbFactory
