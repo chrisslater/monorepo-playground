@@ -11,8 +11,7 @@
 		"lib": [
 			"es2016"
 		],
-		"target": "es5",
-		"types": ["reflect-metadata"]
+		"target": "es6"
 	},
 	"include": [
 		"src"

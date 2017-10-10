@@ -1,5 +1,4 @@
 import restClient, { IRestClient } from 'rest-client'
-import { IRestClient } from '../../../rest-client/src/index';
 
 export interface IUserDto {
 	id: string
@@ -15,20 +14,21 @@ export interface IUsersRepository {
 // type IUsersConstructor = (prefix: string, options: IRestClient) => IUsersRepository
 
 class UsersRepository implements IUsersRepository {
-	protected client: IRestClient
+	constructor(
+		protected client: IRestClient,
+	) {}
 
-	constructor(client: IRestClient) {
-		this.client = client
-	}
-
-	public getUserByName(name: string): IUserDto {
-		return this.context.users
-			.find({ name })
-			.value<IUserDto>()
+	public async getUserByName(name: string): IUserDto {
+		this.client.get(`users/${name}`)
 	}
 
 	public async getUsers(): Promise<IUserDto[]> {
-		return await this.client.get('users')
+		try {
+			const { data }: { data: IUserDto[] } = await this.client.get<IUserDto[]>('users')
+			return data
+		} catch (e) {
+			console.log(e)
+		}
 	}
 }
 

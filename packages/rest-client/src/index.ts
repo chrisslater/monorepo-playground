@@ -30,7 +30,7 @@ export class RestClient implements IRestClient {
 	}
 
 	public async get(url: string): Promise<IRestResponse> {
-		return await this.client.get(url)
+		return await this.client.get(`${this.prefix}${url}`)
 	}
 }
 

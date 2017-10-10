@@ -28,21 +28,21 @@ services:
       - "5860:5858"
     entrypoint: ["yarn", "debug:ts"]
 
-  # client:
-  #   build:
-  #     context: .
-  #     dockerfile: ./images/Dockerfile.node.dev
-  #   container_name: client
-  #   environment:
-  #     NODE_ENV: "development"
-  #     PACKAGE_PATH: "/code/packages/client"
-  #   volumes:
-  #     - ./packages:/code/packages
+  client:
+    build:
+      context: .
+      dockerfile: ./images/Dockerfile.node.dev
+    container_name: client
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/client"
+    volumes:
+      - ./packages:/code/packages
 
-  #   ports:
-  #     - "3103:3000"
-  #     - "5861:5858"
-  #   entrypoint: ['yarn', 'debug:client']
+    ports:
+      - "3103:3000"
+      - "5861:5858"
+    entrypoint: ['yarn', 'debug:client']
 
   users-service:
     build:

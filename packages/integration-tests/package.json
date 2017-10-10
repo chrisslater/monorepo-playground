@@ -6,6 +6,11 @@
 	"author": "Christopher Slater <chris@snapper.fish>",
 	"license": "MIT",
 	"dependencies": {
-		"cucumber": "^3.0.2"
+		"cucumber": "^3.0.2",
+		"testcafe": "^0.17.2"
+	},
+	"scripts": {
+		"test": "testcafe chrome *.test.js",
+		"start": "./node_modules/.bin/cucumber-js"
 	}
 }

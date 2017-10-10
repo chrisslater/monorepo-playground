@@ -10,3 +10,5 @@ app.post('', async (ctx: IContext) => {
 
 	ctx.body = await Graphql.graphql(schema, query)
 })
+
+app.listen()

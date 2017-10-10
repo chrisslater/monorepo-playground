@@ -54,4 +54,5 @@ app.post('', function (ctx) { return __awaiter(_this, void 0, void 0, function (
         }
     });
 }); });
+app.listen();
 //# sourceMappingURL=index.js.map

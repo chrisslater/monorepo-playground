@@ -1,0 +1,63 @@
+Arguments: 
+  /Users/chris.slater/.nvm/versions/node/v6.9.5/bin/node /usr/local/Cellar/yarn/1.1.0/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/chris.slater/.rbenv/shims:/Users/chris.slater/.rbenv/bin:/Users/chris.slater/.nvm/versions/node/v6.9.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/chris.slater/.rvm/bin
+
+Yarn version: 
+  1.1.0
+
+Node version: 
+  6.9.5
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+  	"devDependencies": {
+  		"concurrently": "^3.5.0",
+  		"jest": "^21.0.2",
+  		"lerna": "^2.1.2",
+  		"nodemon": "^1.12.1",
+  		"ts-node": "^3.3.0",
+  		"typescript": "^2.5.2"
+  	},
+  	"name": "docker-yarn-workspace-demo",
+  	"version": "0.0.1",
+  	"author": "Christopher Slater <chris@snapper.fish>",
+  	"license": "MIT",
+  	"workspaces": [
+  		"packages/*"
+  	],
+  	"private": true,
+  	"scripts": {
+  		"debug": "./scripts/debug.sh",
+  		"debug:ts": "./scripts/debug-ts.sh",
+  		"debug:client": "./scripts/debug-client.sh",
+  		"start:dev": "./scripts/start-dev.sh",
+  		"test": "jest"
+  	},
+  	"description": "",
+  	"repository": "https://gitlab.com/snapperfish/docker-yarn-workspace-demo.git"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: http://npm.cloud.platforms.gamesys.corp:4873/@types%2fjest: can't access restricted package without auth, did you forget 'npm set always-auth true'?
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:61779:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:121917:22)
+      at emitTwo (events.js:106:13)
+      at Request.emit (events.js:191:7)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122900:10)
+      at emitOne (events.js:96:13)
+      at Request.emit (events.js:188:7)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122820:12)
+      at IncomingMessage.g (events.js:291:16)
+      at emitNone (events.js:91:20)
+      at IncomingMessage.emit (events.js:185:7)
