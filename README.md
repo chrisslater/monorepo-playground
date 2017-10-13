@@ -15,6 +15,10 @@
 * In docker means that you can cache the yarn install from the lock file
 * Consistant install accross envirnonments
 
+## Kubernetes
+
+https://myjavabytes.wordpress.com/2017/03/12/getting-a-host-path-persistent-volume-to-work-in-minikube-kubernetes-run-locally/
+
 ## Linting
 
 * Linting inheritence
@@ -27,6 +31,11 @@
 
 * https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
 * Ingress controller: https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/
+* https://myjavabytes.wordpress.com/2017/03/12/getting-a-host-path-persistent-volume-to-work-in-minikube-kubernetes-run-locally/
+
+### Blockers
+
+* https://github.com/kubernetes/minikube/issues/1551
 
 
 ## Further reading

@@ -1,9 +1,17 @@
 # Not currently used, recording build steps for the future.
 
-minikube start
+brew install docker-machine-driver-xhyve
 
-minikube addons enable ingress
+eval $(minikube docker-env)
 
-docker build -t graphql:next -f ./images/Dockerfile.node.dev .
+minikube start --vm-driver=xhyve
+
+helm install stable/iginx-ingress
+
+docker build -t node:next -f ./images/Dockerfile.node.dev .
+
+#kubectl create -f kube/application.yml
 
 kubectl create -f kube/application.yml
+
+kubectl create -f kube/users-service-deployment.yml

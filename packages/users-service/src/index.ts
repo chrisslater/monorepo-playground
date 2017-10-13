@@ -4,7 +4,7 @@ import db from './db'
 const app = server()
 const context = db()
 
-app.get('/users', async (ctx: IContext) => {
+app.get('/', async (ctx: IContext) => {
 	ctx.body = await context.getUsers()
 })
 

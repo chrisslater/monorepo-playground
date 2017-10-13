@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: users-service-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: application
+    spec:
+      volumes:
+      - name: workspace
+        persistentVolumeClaim:
+          claimName: workspace-volume-claim
+      containers:
+      - name: users-service
+        image: node:next
+        env:
+        - name: PACKAGE_PATH
+          value: /code/packages/users-service
+        command: ["yarn", "debug:ts"]
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /code
+          name: workspace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+  labels:
+    run: application
+spec:
+  # type: NodePort
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+    # nodePort: 31001
+    protocol: TCP
+    name: http
+  selector:
+    run: application

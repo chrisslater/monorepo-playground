@@ -1,0 +1,16 @@
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      ingress.kubernetes.io/rewrite-target: /
+    name: users-service
+  spec:
+    rules:
+      - host: application.local
+        http:
+          paths:
+            - backend:
+                serviceName: users-service
+                servicePort: 80
+              path: /users

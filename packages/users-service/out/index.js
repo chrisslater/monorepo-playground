@@ -40,7 +40,7 @@ var server_1 = require("server");
 var db_1 = require("./db");
 var app = server_1.default();
 var context = db_1.default();
-app.get('/users', function (ctx) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/', function (ctx) { return __awaiter(_this, void 0, void 0, function () {
     var _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
