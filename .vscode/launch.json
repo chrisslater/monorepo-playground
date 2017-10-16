@@ -11,7 +11,7 @@
 			"name": "Client",
 			"type": "chrome",
 			"request": "launch",
-			"url": "http://localhost:3000",
+			"url": "http://application.local",
 			"userDataDir": "${workspaceRoot}/.vscode/chrome",
 			"sourceMapPathOverrides": {
 				"/code/packages/client/src/*": "${workspaceRoot}/packages/client/src/*"
