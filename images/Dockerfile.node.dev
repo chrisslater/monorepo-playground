@@ -1,4 +1,4 @@
-FROM node:8.5-alpine
+FROM node:8.7-alpine
 
 # Copied from: http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
 # use changes to package.json to force Docker not to use the cache
