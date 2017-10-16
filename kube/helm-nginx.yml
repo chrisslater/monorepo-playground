@@ -4,13 +4,24 @@
     annotations:
       kubernetes.io/ingress.class: nginx
       ingress.kubernetes.io/rewrite-target: /
-    name: users-service
+    name: app
   spec:
     rules:
       - host: application.local
         http:
           paths:
-            - backend:
-                serviceName: users-service
+            - path: /graphql
+              backend:
+                serviceName: graphql-svc
                 servicePort: 80
-              path: /users
+
+            - path: /users
+              backend:
+                serviceName: users-svc
+                servicePort: 80
+
+            - path: /*
+              backend:
+                serviceName: client-svc
+                servicePort: 80
+

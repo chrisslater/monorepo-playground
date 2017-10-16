@@ -1,24 +1,24 @@
 apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
 kind: Deployment
 metadata:
-  name: users-service
+  name: graphql
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        run: users-service
+        run: graphql
     spec:
       volumes:
       - name: code
         hostPath:
           path: /Users/chris/Sites/docker-yarn-workspace-demo
       containers:
-      - name: users-service
+      - name: graphql
         image: node:next
         env:
         - name: PACKAGE_PATH
-          value: /code/packages/users-service
+          value: /code/packages/graphql
         command: ["yarn", "debug:ts"]
         ports:
         - containerPort: 3000
@@ -30,12 +30,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: users-svc
+  name: graphql-svc
   labels:
     run: application
 spec:
   selector:
-    run: users-service
+    run: graphql
+  # type: LoadBalancer
   type: NodePort
   ports:
   - name: http
@@ -47,4 +48,5 @@ spec:
   - name: debug-port
     port: 5858
     targetPort: 5858
-    nodePort: 32002
+    nodePort: 32001
+

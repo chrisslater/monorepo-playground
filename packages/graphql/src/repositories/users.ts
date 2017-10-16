@@ -16,10 +16,15 @@ export interface IUsersRepository {
 class UsersRepository implements IUsersRepository {
 	constructor(
 		protected client: IRestClient,
-	) {}
+	) { }
 
-	public async getUserByName(name: string): IUserDto {
-		this.client.get(`users/${name}`)
+	public async getUserByName(name: string): Promise<IUserDto> {
+		try {
+			const { data }: { data: IUserDto } = this.client.get(`users/${name}`)
+			return data
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
 	public async getUsers(): Promise<IUserDto[]> {
@@ -34,7 +39,7 @@ class UsersRepository implements IUsersRepository {
 
 const usersRepositoryFactory = () => {
 	const client = restClient({
-		prefix: 'http://users-service:3000/',
+		prefix: 'http://users-svc.default/',
 	})
 
 	return new UsersRepository(client)

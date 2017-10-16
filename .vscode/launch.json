@@ -3,6 +3,9 @@
 	"compounds": [{
 		"name": "Node+Browser",
 		"configurations": ["Client", "Graphql"]
+	}, {
+		"name": "Graphql+UserService",
+		"configurations": ["Graphql", "users-service"]
 	}],
 	"configurations": [{
 			"name": "Client",
@@ -19,9 +22,9 @@
 			"type": "node",
 			"request": "attach",
 			"name": "Graphql",
-			"port": 5860,
+			"port": 32001,
 			"protocol": "inspector",
-			"address": "localhost",
+			"address": "application.local",
 			"restart": true,
 			"sourceMaps": true,
 			"localRoot": "${workspaceRoot}/packages/graphql",
@@ -32,9 +35,9 @@
 			"type": "node",
 			"request": "attach",
 			"name": "users-service",
-			"port": 5862,
+			"port": 32002,
 			"protocol": "inspector",
-			"address": "localhost",
+			"address": "application.local",
 			"restart": true,
 			"sourceMaps": true,
 			"localRoot": "${workspaceRoot}/packages/users-service",

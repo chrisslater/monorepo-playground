@@ -17,7 +17,7 @@ export interface IUser {
 // 	createUser: Graphql.GraphQLFieldConfig<any, any>
 // }
 
-export const UserType = new Graphql.GraphQLObjectType({
+const UserType = new Graphql.GraphQLObjectType({
 	name: 'User',
 	fields: {
 		id: {
@@ -32,7 +32,7 @@ export const UserType = new Graphql.GraphQLObjectType({
 	},
 })
 
-export const UserInputType = new Graphql.GraphQLObjectType({
+const UserInputType = new Graphql.GraphQLObjectType({
 	name: 'UserInput',
 	fields: {
 		id: {
