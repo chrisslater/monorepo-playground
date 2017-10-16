@@ -2,14 +2,14 @@
 	"name": "graphql",
 	"version": "0.0.1",
 	"dependencies": {
+		"graphql": "^0.11.3"
+	},
+	"devDependencies": {
 		"@types/graphql": "^0.11.4",
 		"@types/koa": "^2.0.39",
 		"@types/koa-bodyparser": "^3.0.23",
 		"@types/koa-router": "^7.0.22",
 		"@types/node": "^8.0.24",
-		"graphql": "^0.11.3"
-	},
-	"devDependencies": {
 		"tslint": "^5.6.0",
 		"typescript": "^2.4.2"
 	},

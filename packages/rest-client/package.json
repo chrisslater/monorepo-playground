@@ -13,7 +13,6 @@
 		"lint": "tslint --init"
 	},
 	"dependencies": {
-		"@types/axios": "^0.14.0",
 		"axios": "^0.16.2"
 	}
 }
