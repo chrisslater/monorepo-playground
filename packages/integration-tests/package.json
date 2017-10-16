@@ -9,7 +9,6 @@
 		"testcafe": "^0.17.2"
 	},
 	"scripts": {
-		"test": "testcafe chrome src/*.test.ts",
-		"start": "./node_modules/.bin/cucumber-js"
+		"start": "testcafe chrome src/*.test.ts"
 	}
 }
