@@ -1,3 +1,7 @@
+**WORK IN PROGRESS**
+
+PLEASE BE AWARE THAT THIS IS A WORK IN PROGRESS PLAYGROUND. I am committed however to develop this playground to be useable by others in the near future.
+
 ## Goals
 
 * __Seamless debugging__ - I should be able to debug between my packages
