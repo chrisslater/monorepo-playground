@@ -1,0 +1,50 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: client
+    spec:
+      volumes:
+      - name: code
+        hostPath:
+          path: /Users/chris/Sites/docker-yarn-workspace-demo
+      containers:
+      - name: client
+        image: node:next
+        env:
+        - name: PACKAGE_PATH
+          value: /code/packages/client
+        command:
+        - yarn
+        - debug:client
+        ports:
+        - containerPort: 5858
+        - containerPort: 3000
+        volumeMounts:
+        - name: code
+          mountPath: /code
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: client-svc
+labels:
+  run: application
+spec:
+  selector:
+    run: client
+  type: NodePort
+  ports:
+  - name: debug-port
+    port: 5858
+    targetPort: 5858
+
+  - name: http
+    port: 80
+    targetPort: 3000
+

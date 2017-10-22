@@ -8,6 +8,14 @@
 		"configurations": ["Graphql", "users-service"]
 	}],
 	"configurations": [{
+			"type": "node",
+			"request": "launch",
+			"name": "Client Cli",
+			"program": "${workspaceFolder}/packages/config-cli/out/index.js",
+			"restart": true,
+			"sourceMaps": true
+		},
+		{
 			"name": "Client",
 			"type": "chrome",
 			"request": "launch",

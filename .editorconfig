@@ -15,6 +15,6 @@ indent_size = 4
 [*.{js}]
 charset = utf-8
 
-[*.{yml,yaml}]
+[*.{yml,yaml,yml.template}]
 indent_style = space
 indent_size = 2

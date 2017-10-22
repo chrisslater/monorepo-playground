@@ -1,0 +1,46 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ name }}-deployment
+spec:
+  replicas: {{ replicas }}
+  template:
+    metadata:
+      labels:
+        run: {{ name }}
+    spec:
+      {% if volumes %}volumes:{% for volume in volumes %}
+      - name: {{ volume.name }}
+        hostPath:
+          path: {{ volume.path }}{% endfor %}{% endif %}
+      containers:
+      - name: {{ name }}
+        image: {{ image }}
+        env:{% for e in env %}
+        - name: {{ e.name }}
+          value: {{ e.value }}{% endfor %}
+        - name: PACKAGE_PATH
+          value: /code/packages/{{name}}
+        command:{% for com in command %}
+        - {{ com }}{% endfor %}
+        ports:{% for port in ports %}
+        - containerPort: {{ port.containerPort }}{% endfor %}
+        {% if volumes %}volumeMounts:{% for volume in volumes %}
+        - name: {{ volume.name }}
+          mountPath: {{ volume.mount}}{% endfor %}{% endif %}
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: {{ name }}-svc
+labels:
+  run: application
+spec:
+  selector:
+    run: {{ name }}
+  type: NodePort
+  ports:{% for port in ports %}
+  - name: {{ port.name }}
+    port: {{ port.port }}
+    targetPort: {{ port.containerPort }}
+    {% if port.nodePort %}nodePort: {{ port.nodePort }}{% endif %}{% endfor %}

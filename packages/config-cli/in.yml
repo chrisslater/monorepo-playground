@@ -1,0 +1,26 @@
+containers:
+- name: client
+  type: ts
+  replicas: 1
+  command: ["yarn", "debug:client"]
+  ports:
+  - name: debug-port
+    port: 5858
+    containerPort: 5858
+- name: graphql
+  type: ts
+  replicas: 1
+  ports:
+  - name: debug-port
+    port: 5858
+    containerPort: 5858
+    nodePort: 32001
+- name: users-service
+  type: ts
+  replicas: 1
+  ports:
+  - name: debug-port
+    port: 5858
+    containerPort: 5858
+    nodePort: 32002
+
