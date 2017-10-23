@@ -43,8 +43,8 @@ spec:
   - name: debug-port
     port: 5858
     targetPort: 5858
-
+    
   - name: http
     port: 80
     targetPort: 3000
-
+    
