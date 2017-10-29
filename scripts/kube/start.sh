@@ -14,4 +14,11 @@ docker build -t node:next -f ./images/Dockerfile.node.dev .
 
 kubectl create -f kube/application.yml
 
+
+kubectl create -f kube/client-deployment.yml
+kubectl create -f kube/graphql-deployment.yml
 kubectl create -f kube/users-service-deployment.yml
+
+kubectl delete -f kube/client-deployment.yml
+kubectl delete -f kube/graphql-deployment.yml
+kubectl delete -f kube/users-service-deployment.yml
