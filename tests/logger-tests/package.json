@@ -1,0 +1,39 @@
+{
+	"name": "logger-tests",
+	"version": "0.0.1",
+	"description": "Tests for logger package",
+	"main": "out/index.js",
+	"author": "Christopher Slater <chris@snapper.fish>",
+	"license": "MIT",
+	"private": false,
+	"devDependencies": {
+		"@types/jest": "^21.1.0"
+	},
+	"dependencies": {
+		"jest": "^21.1.0",
+		"ts-jest": "^21.1.0",
+		"snapperfish-logger": "^0.0.1"
+	},
+	"scripts": {
+		"start": "jest"
+	},
+	"jest": {
+		"collectCoverage": true,
+		"collectCoverageFrom": ["../../packages/snapperfish-logger/**/*"],
+		"projects": [
+			"<rootDir>/../../packages"
+		],
+
+		"transform": {
+			"^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json"
+		]
+	}
+}

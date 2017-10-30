@@ -1,21 +1,19 @@
 {
-	"name": "users-service",
+	"name": "snapperfish-logger",
 	"version": "0.0.1",
-	"types": "out/main.d.ts",
+	"main": "out/index.js",
+	"types": "out/index.d.ts",
 	"devDependencies": {
+		"@types/bunyan": "^1.8.3",
 		"@types/node": "^8.0.24",
-		"tslint": "^5.6.0",
 		"typescript": "^2.4.2"
 	},
 	"scripts": {
 		"start": "node out/index.js",
 		"watch": "tsc -w --declaration",
-		"build": "tsc --declaration",
-		"lint": "tslint --init"
+		"build": "tsc --declaration"
 	},
 	"dependencies": {
-		"lowdb": "^1.0.0",
-		"server": "^0.0.1",
-		"snapperfish-logger": "^0.0.1"
+		"bunyan": "^1.8.12"
 	}
 }

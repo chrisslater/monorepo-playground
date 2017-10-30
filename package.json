@@ -1,6 +1,7 @@
 {
 	"devDependencies": {
 		"concurrently": "^3.5.0",
+		"dtrace-provider": "^0.8.5",
 		"lerna": "^2.1.2",
 		"nodemon": "^1.12.1",
 		"ts-node": "^3.3.0",
@@ -11,14 +12,16 @@
 	"author": "Christopher Slater <chris@snapper.fish>",
 	"license": "MIT",
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"tests/*"
 	],
 	"private": true,
 	"scripts": {
 		"debug": "./scripts/debug.sh",
 		"debug:ts": "./scripts/debug-ts.sh",
 		"debug:client": "./scripts/debug-client.sh",
-		"start:dev": "./scripts/start-dev.sh"
+		"start:dev": "./scripts/start-dev.sh",
+		"clean": "rm -rf node_modules/ && lerna clean"
 	},
 	"description": "",
 	"repository": "https://gitlab.com/snapperfish/docker-yarn-workspace-demo.git"
