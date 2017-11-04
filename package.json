@@ -18,7 +18,8 @@
 		"debug": "./scripts/debug.sh",
 		"debug:ts": "./scripts/debug-ts.sh",
 		"debug:client": "./scripts/debug-client.sh",
-		"start:dev": "./scripts/start-dev.sh"
+		"start:dev": "./scripts/start-dev.sh",
+		"configs": "node --inspect ./node_modules/config-cli/out/index.js"
 	},
 	"description": "",
 	"repository": "https://gitlab.com/snapperfish/docker-yarn-workspace-demo.git"

@@ -5,17 +5,15 @@ shared:
       value: application
   volumes:
     - name: code
-      mount: /code
-      path: /Users/chris/Sites/docker-yarn-workspace-demo
+      mount: /code/packages
+      path: /Users/chris/Sites/docker-yarn-workspace-demo/packages
 
 containers:
   ts:
     image: node:next
+    env:
+    - name: NODE_ENV
+      value: "development"
     command:
     - yarn
     - debug:ts
-    ports:
-    - name: http
-      port: 80
-      containerPort: 3000
-      protocol: TCP

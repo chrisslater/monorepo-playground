@@ -1,0 +1,69 @@
+version: '3'
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: ./images/Dockerfile.nginx
+      args:
+        package_path: "./packages/gateway"
+    image: gateway
+    container_name: gateway
+    ports:
+      - "3000:80"
+    entrypoint: ["nginx", "-g", "daemon off;"]
+
+  
+  client:
+    # build:
+    #  context: .
+    #  dockerfile: ./images/Dockerfile.node.dev
+    image: node:next
+    container_name: client
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/client"
+    volumes:
+      - /Users/chris/Sites/docker-yarn-workspace-demo/packages:/code/packages
+    ports:
+      - "30000:3000"
+      - "32000:5858"
+    entrypoint:
+        - yarn
+        - debug:client
+  
+  graphql:
+    # build:
+    #  context: .
+    #  dockerfile: ./images/Dockerfile.node.dev
+    image: node:next
+    container_name: graphql
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/graphql"
+    volumes:
+      - /Users/chris/Sites/docker-yarn-workspace-demo/packages:/code/packages
+    ports:
+      - "30001:3000"
+      - "32001:5858"
+    entrypoint:
+        - yarn
+        - debug:ts
+  
+  users-service:
+    # build:
+    #  context: .
+    #  dockerfile: ./images/Dockerfile.node.dev
+    image: node:next
+    container_name: users-service
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/users-service"
+    volumes:
+      - /Users/chris/Sites/docker-yarn-workspace-demo/packages:/code/packages
+    ports:
+      - "30002:3000"
+      - "32002:5858"
+    entrypoint:
+        - yarn
+        - debug:ts
+  

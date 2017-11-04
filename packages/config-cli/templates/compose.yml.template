@@ -1,0 +1,31 @@
+version: '3'
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: ./images/Dockerfile.nginx
+      args:
+        package_path: "./packages/gateway"
+    image: gateway
+    container_name: gateway
+    ports:
+      - "3000:80"
+    entrypoint: ["nginx", "-g", "daemon off;"]
+
+  {% for container in containers %}
+  {{ container.name }}:
+    # build:
+    #  context: .
+    #  dockerfile: ./images/Dockerfile.node.dev
+    image: {{ container.image }}
+    container_name: {{ container.name }}
+    environment:
+      NODE_ENV: "development"
+      PACKAGE_PATH: "/code/packages/{{ container.name }}"
+    {% if container.volumes %}volumes:{% for volume in container.volumes %}
+      - {{ volume.path }}:{{ volume.mount }}{% endfor %}{% endif %}
+    {% if container.ports %}ports:{% for port in container.ports %}
+      - "{{ port.hostPort }}:{{ port.containerPort }}"{% endfor %}{% endif %}
+    entrypoint:{% for cmd in container.command %}
+        - {{ cmd }}{% endfor %}
+  {% endfor %}

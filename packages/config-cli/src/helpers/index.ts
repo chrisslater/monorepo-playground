@@ -1,14 +1,19 @@
 type ContainerType = 'ts'
 
 interface ITsConfig {
-	type: ContainerType
+	// type: ContainerType
 	image: string
 	command: string[]
-	ports: IPortVars[]
+	ports?: IPortVars[]
 }
 
 interface IContainerTypes {
 	ts: ITsConfig
+}
+
+interface ILabel {
+	name: string
+	value: string | number | boolean
 }
 
 interface IVolume {
@@ -18,7 +23,8 @@ interface IVolume {
 }
 
 interface ISharedConfig {
-	volumes: IVolume[]
+	volumes?: IVolume[]
+	labels?: ILabel[]
 }
 
 export interface IDefaults {
@@ -39,7 +45,7 @@ interface IPortVars {
 	protocol?: string
 }
 
-interface IContainer {
+export interface IContainer {
 	name: string
 	type: ContainerType
 	env: IEnvPairs[]
@@ -47,29 +53,33 @@ interface IContainer {
 }
 
 type IContainerConfig = ITsConfig
-type IMergedConfig = ISharedConfig & IContainerConfig & IContainer
+export type MergedConfig = ISharedConfig & IContainerConfig & IContainer
 
-function mergeConfig(container: IContainer, defaults: IDefaults): IMergedConfig {
+function mergeConfig(container: IContainer, defaults: IDefaults): MergedConfig {
 	const defaultContainer = defaults.containers[container.type]
 	const variables = Object.assign({}, defaults.shared, defaultContainer, container)
 
-	if (Array.isArray(container.ports) && container.ports.length > 0) {
-		variables.ports = variables.ports.concat(defaultContainer.ports)
-	}
+	// if (Array.isArray(defaultContainer.ports) && defaultContainer.ports.length > 0) {
+	// 	variables.ports = variables.ports.concat(defaultContainer.ports)
+	// }
 
 	return variables
 }
 
-type Callback = (config: IMergedConfig) => void
+type Callback = (config: MergedConfig) => void
 
 export function createContainerConfig(
 	containers: IContainer[],
 	defaults: IDefaults,
 	callback?: Callback,
-): IMergedConfig[] {
+): MergedConfig[] {
 	return containers.map((container) => {
-		const config = mergeConfig(container, defaults)
-		callback(config)
-		return config
+		const conf = mergeConfig(container, defaults)
+
+		if (callback) {
+			callback(conf)
+		}
+
+		return conf
 	})
 }

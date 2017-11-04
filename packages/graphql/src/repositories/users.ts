@@ -39,7 +39,8 @@ class UsersRepository implements IUsersRepository {
 
 const usersRepositoryFactory = () => {
 	const client = restClient({
-		prefix: 'http://users-svc.default/',
+		// prefix: 'http://users-svc.default/',
+		prefix: 'http://users-service:3000/',
 	})
 
 	return new UsersRepository(client)

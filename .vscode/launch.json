@@ -10,8 +10,22 @@
 	"configurations": [{
 			"type": "node",
 			"request": "launch",
-			"name": "Client Cli",
+			"name": "Config Cli exec",
+			"protocol": "inspector",
 			"program": "${workspaceFolder}/packages/config-cli/out/index.js",
+			"cwd": "${workspaceRoot}",
+			"args": ["exec", "my-config.yml"],
+			"restart": true,
+			"sourceMaps": true
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Config Cli compose",
+			"protocol": "inspector",
+			"program": "${workspaceFolder}/packages/config-cli/out/index.js",
+			"cwd": "${workspaceRoot}",
+			"args": ["compose", "my-config.yml"],
 			"restart": true,
 			"sourceMaps": true
 		},
@@ -32,7 +46,8 @@
 			"name": "Graphql",
 			"port": 32001,
 			"protocol": "inspector",
-			"address": "application.local",
+			"//address": "application.local",
+			"address": "localhost",
 			"restart": true,
 			"sourceMaps": true,
 			"localRoot": "${workspaceRoot}/packages/graphql",

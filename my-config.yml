@@ -3,6 +3,9 @@ containers:
   type: ts
   replicas: 1
   command: ["yarn", "debug:client"]
+  env:
+  - name: PACKAGE_PATH
+    value: "/code/packages/client"
   ports:
   - name: http
     port: 80
@@ -10,10 +13,14 @@ containers:
     containerPort: 3000
   - name: debug-port
     port: 5858
+    hostPort: 32000
     containerPort: 5858
 - name: graphql
   type: ts
   replicas: 1
+  env:
+  - name: PACKAGE_PATH
+    value: "/code/packages/graphql"
   ports:
   - name: http
     port: 80
@@ -21,11 +28,14 @@ containers:
     containerPort: 3000
   - name: debug-port
     port: 5858
+    hostPort: 32001
     containerPort: 5858
-    nodePort: 32001
 - name: users-service
   type: ts
   replicas: 1
+  env:
+  - name: PACKAGE_PATH
+    value: "/code/packages/users-service"
   ports:
   - name: http
     port: 80
@@ -33,6 +43,8 @@ containers:
     containerPort: 3000
   - name: debug-port
     port: 5858
+    hostPort: 32002
     containerPort: 5858
     nodePort: 32002
+
 
